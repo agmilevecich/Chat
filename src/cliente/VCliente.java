@@ -17,9 +17,10 @@ public class VCliente extends javax.swing.JFrame {
     /**
      * Creates new form VCliente
      */
-    
     private MCliente cliente;
     private DefaultListModel dlm = new DefaultListModel();
+    private static int cont = 1;
+
     public VCliente() {
         initComponents();
         areaMensaje.setEditable(false);
@@ -36,8 +37,8 @@ public class VCliente extends javax.swing.JFrame {
         btnConectar.setEnabled(true);
         btnDesconectar.setEnabled(false);
     }
-    
-        private void desbloquear() {
+
+    private void desbloquear() {
         txtURL.setEnabled(false);
         txtPuerto.setEnabled(false);
         txtNick.setEnabled(false);
@@ -88,7 +89,13 @@ public class VCliente extends javax.swing.JFrame {
 
         jLabel4.setText("Nick:");
 
-        txtNick.setText("Nick");
+        txtNick.setText("NICK "+cont);
+        cont++;
+        txtNick.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNickActionPerformed(evt);
+            }
+        });
 
         btnConectar.setText("Conectar");
         btnConectar.addActionListener(new java.awt.event.ActionListener() {
@@ -186,41 +193,64 @@ public class VCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesconectarActionPerformed
-        
-        bloquear();
+
+        if (cliente != null) {
+            cliente.desconectar();
+            cliente.interrupt();
+            cliente = null;
+            areaMensaje.setText("");
+            dlm.removeAllElements();
+            bloquear();
+        }
+
     }//GEN-LAST:event_btnDesconectarActionPerformed
 
     private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
-        
+
         desbloquear();
         String url = txtURL.getText();
         int puerto = Integer.parseInt(txtPuerto.getText());
         String nick = txtNick.getText();
         listaNick.setModel(dlm);
         txtMensaje.requestFocus();
-        
-        if(cliente == null) {
+
+        if (cliente == null) {
             cliente = new MCliente(this, url, puerto, nick);
             cliente.start();
         }
-        
+
     }//GEN-LAST:event_btnConectarActionPerformed
 
     private void txtMensajeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMensajeKeyPressed
 
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            cliente.enviarMensaje(txtMensaje.getText());
-            txtMensaje.setText("");
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (txtMensaje.getText().trim().length() == 0) {
+                txtMensaje.setText("");
+                return;
+            } else {
+                cliente.enviarMensaje(txtMensaje.getText());
+                txtMensaje.setText("");
+            }
         }
     }//GEN-LAST:event_txtMensajeKeyPressed
+
+    private void txtNickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNickActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNickActionPerformed
+    
 
     public void nuevaPersona(String nick) {
         dlm.addElement(nick);
     }
-    
+
     public void mensajeRecibido(String mensaje) {
         areaMensaje.append(mensaje + "\n");
     }
+
+    public void borrarPersona(int nPos) {
+        dlm.remove(nPos);
+    }
+
     /**
      * @param args the command line arguments
      */

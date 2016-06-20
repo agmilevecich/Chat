@@ -5,14 +5,14 @@ import java.io.DataOutputStream;
 import java.net.Socket;
 
 
-public class MSConecion extends Thread {
+public class MSConexion extends Thread {
     
     private Socket s;
     private DataInputStream dis;
     private DataOutputStream dos;
     private String nick;
     
-    public MSConecion(Socket s) {
+    public MSConexion(Socket s) {
         try {
             this.s = s;
             dis = new DataInputStream(s.getInputStream());

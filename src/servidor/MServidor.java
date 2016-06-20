@@ -24,7 +24,7 @@ public class MServidor extends Thread {
             ss = new ServerSocket(puerto);
             while(true) {
                 s = ss.accept();
-                MSGestionConexiones.getInstancia().conectaNuevo(new MSConecion(s));
+                MSGestionConexiones.getInstancia().conectaNuevo(new MSConexion(s));
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(ventana, "Error al abrir el puerto");

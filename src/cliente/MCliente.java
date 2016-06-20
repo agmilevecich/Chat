@@ -23,7 +23,11 @@ public class MCliente extends Thread {
         enviarTrama(2, mensaje);
     }
     
-    public void enviarTrama(int codigo, String mensaje) {
+    public void desconectar() {
+        enviarTrama(3, "");
+    }
+    
+    private void enviarTrama(int codigo, String mensaje) {
         try {
             DataOutputStream dos = new DataOutputStream(s.getOutputStream());
             dos.writeInt(codigo);
@@ -48,6 +52,14 @@ public class MCliente extends Thread {
                         
                     case 2:
                         ventana.mensajeRecibido(mensaje);
+                        
+                    case 3:
+                        try {
+                            int nPos = Integer.parseInt(mensaje);
+                            ventana.borrarPersona(nPos);
+                        } catch (Exception e) {
+                        }
+                        
                 }
             }
         } catch (Exception e) {
