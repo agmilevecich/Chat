@@ -5,6 +5,8 @@
  */
 package cliente;
 
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author ariel
@@ -14,6 +16,9 @@ public class VCliente extends javax.swing.JFrame {
     /**
      * Creates new form VCliente
      */
+    
+    private MCliente cliente;
+    private DefaultListModel dlm = new DefaultListModel();
     public VCliente() {
         initComponents();
         areaMensaje.setEditable(false);
@@ -181,8 +186,22 @@ public class VCliente extends javax.swing.JFrame {
     private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
         
         desbloquear();
+        String url = txtURL.getText();
+        int puerto = Integer.parseInt(txtPuerto.getText());
+        String nick = txtNick.getText();
+        listaNick.setModel(dlm);
+        txtMensaje.requestFocus();
+        
+        if(cliente == null) {
+            cliente = new MCliente(this, url, puerto, nick);
+            cliente.start();
+        }
+        
     }//GEN-LAST:event_btnConectarActionPerformed
 
+    public void nuevaPersona(String nick) {
+        dlm.addElement(nick);
+    }
     /**
      * @param args the command line arguments
      */
@@ -234,4 +253,5 @@ public class VCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtPuerto;
     private javax.swing.JTextField txtURL;
     // End of variables declaration//GEN-END:variables
+
 }
