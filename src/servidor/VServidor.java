@@ -11,9 +11,8 @@ package servidor;
  */
 public class VServidor extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VServidor
-     */
+    private MServidor servidor;
+
     public VServidor() {
         initComponents();
     }
@@ -32,7 +31,12 @@ public class VServidor extends javax.swing.JFrame {
         txtPuerto = new javax.swing.JTextField();
         btnAbrir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Servidor");
@@ -85,12 +89,24 @@ public class VServidor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
-        
+
         txtPuerto.setEnabled(false);
         btnAbrir.setEnabled(false);
-        
+
         int puerto = Integer.parseInt(txtPuerto.getText());
+
+        if (servidor == null) {
+            servidor = new MServidor(this, puerto);
+            servidor.start();
+        }
     }//GEN-LAST:event_btnAbrirActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+
+        if(servidor != null) {    
+        servidor.interrupt();
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
