@@ -50,11 +50,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Servidor"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnServidorActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCliente">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cliente"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClienteActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
