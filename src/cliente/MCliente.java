@@ -6,17 +6,21 @@ import java.net.Socket;
 
 public class MCliente extends Thread {
     
-    private VCliente vemtana;
+    private VCliente ventana;
     private String url;
     private int puerto;
     private String nick;
     private Socket s;
     
     public MCliente(VCliente ventana, String url, int puerto, String nick) {
-        this.vemtana = ventana;
+        this.ventana = ventana;
         this.url = url;
         this.puerto = puerto;
         this.nick = nick;
+    }
+    
+    public void enviarMensaje(String mensaje) {
+        enviarTrama(2, mensaje);
     }
     
     public void enviarTrama(int codigo, String mensaje) {
@@ -39,8 +43,11 @@ public class MCliente extends Thread {
                 
                 switch(codigo) {
                     case 1:
-                        vemtana.nuevaPersona(mensaje);
+                        ventana.nuevaPersona(mensaje);
                         break;
+                        
+                    case 2:
+                        ventana.mensajeRecibido(mensaje);
                 }
             }
         } catch (Exception e) {

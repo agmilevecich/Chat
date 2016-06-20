@@ -5,6 +5,7 @@
  */
 package cliente;
 
+import java.awt.event.KeyEvent;
 import javax.swing.DefaultListModel;
 
 /**
@@ -65,10 +66,10 @@ public class VCliente extends javax.swing.JFrame {
         txtNick = new javax.swing.JTextField();
         btnConectar = new javax.swing.JButton();
         btnDesconectar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollAreaMensaje = new javax.swing.JScrollPane();
         areaMensaje = new javax.swing.JTextArea();
         txtMensaje = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        scrollListaNick = new javax.swing.JScrollPane();
         listaNick = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -105,9 +106,19 @@ public class VCliente extends javax.swing.JFrame {
 
         areaMensaje.setColumns(20);
         areaMensaje.setRows(5);
-        jScrollPane1.setViewportView(areaMensaje);
+        scrollAreaMensaje.setViewportView(areaMensaje);
 
+        txtMensaje.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMensajeKeyPressed(evt);
+            }
+        });
+
+<<<<<<< HEAD
         jScrollPane2.setViewportView(listaNick);
+=======
+        scrollListaNick.setViewportView(listaNick);
+>>>>>>> 248fe5d... Se agrega el envio de mensajes al chat
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,13 +149,13 @@ public class VCliente extends javax.swing.JFrame {
                                                 .addGap(18, 18, 18)
                                                 .addComponent(txtPuerto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(txtNick)))
-                                    .addComponent(jScrollPane1)
+                                    .addComponent(scrollAreaMensaje)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnConectar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(71, 71, 71)
                                         .addComponent(btnDesconectar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(scrollListaNick, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -168,8 +179,8 @@ public class VCliente extends javax.swing.JFrame {
                     .addComponent(btnConectar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane1))
+                    .addComponent(scrollListaNick)
+                    .addComponent(scrollAreaMensaje))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -199,8 +210,20 @@ public class VCliente extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnConectarActionPerformed
 
+    private void txtMensajeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMensajeKeyPressed
+
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            cliente.enviarMensaje(txtMensaje.getText());
+            txtMensaje.setText("");
+        }
+    }//GEN-LAST:event_txtMensajeKeyPressed
+
     public void nuevaPersona(String nick) {
         dlm.addElement(nick);
+    }
+    
+    public void mensajeRecibido(String mensaje) {
+        areaMensaje.append(mensaje + "\n");
     }
     /**
      * @param args the command line arguments
@@ -245,9 +268,9 @@ public class VCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList listaNick;
+    private javax.swing.JScrollPane scrollAreaMensaje;
+    private javax.swing.JScrollPane scrollListaNick;
     private javax.swing.JTextField txtMensaje;
     private javax.swing.JTextField txtNick;
     private javax.swing.JTextField txtPuerto;
