@@ -114,11 +114,7 @@ public class VCliente extends javax.swing.JFrame {
             }
         });
 
-<<<<<<< HEAD
-        jScrollPane2.setViewportView(listaNick);
-=======
         scrollListaNick.setViewportView(listaNick);
->>>>>>> 248fe5d... Se agrega el envio de mensajes al chat
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
