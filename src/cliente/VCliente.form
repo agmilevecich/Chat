@@ -140,9 +140,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNick">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNickActionPerformed"/>
-      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="txtNick.setText(&quot;NICK &quot;+cont);&#xa;cont++;&#xa;"/>
       </AuxValues>

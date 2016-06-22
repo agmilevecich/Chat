@@ -91,11 +91,6 @@ public class VCliente extends javax.swing.JFrame {
 
         txtNick.setText("NICK "+cont);
         cont++;
-        txtNick.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNickActionPerformed(evt);
-            }
-        });
 
         btnConectar.setText("Conectar");
         btnConectar.addActionListener(new java.awt.event.ActionListener() {
@@ -233,10 +228,6 @@ public class VCliente extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_txtMensajeKeyPressed
-
-    private void txtNickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNickActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNickActionPerformed
     
 
     public void nuevaPersona(String nick) {
