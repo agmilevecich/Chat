@@ -27,7 +27,7 @@ public class VCliente extends javax.swing.JFrame {
         bloquear();
     }
 
-    private void bloquear() {
+    public void bloquear() {
         txtURL.setEnabled(true);
         txtPuerto.setEnabled(true);
         txtNick.setEnabled(true);
@@ -38,7 +38,7 @@ public class VCliente extends javax.swing.JFrame {
         btnDesconectar.setEnabled(false);
     }
 
-    private void desbloquear() {
+    public void desbloquear() {
         txtURL.setEnabled(false);
         txtPuerto.setEnabled(false);
         txtNick.setEnabled(false);
@@ -47,6 +47,17 @@ public class VCliente extends javax.swing.JFrame {
         txtMensaje.setEnabled(true);
         btnConectar.setEnabled(false);
         btnDesconectar.setEnabled(true);
+    }
+
+    public void desconectar() {
+        if (cliente != null) {
+            cliente.desconectar();
+            cliente.interrupt();
+            cliente = null;
+            areaMensaje.setText("");
+            dlm.removeAllElements();
+            bloquear();
+        }
     }
 
     /**
@@ -188,16 +199,7 @@ public class VCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesconectarActionPerformed
-
-        if (cliente != null) {
-            cliente.desconectar();
-            cliente.interrupt();
-            cliente = null;
-            areaMensaje.setText("");
-            dlm.removeAllElements();
-            bloquear();
-        }
-
+        desconectar();
     }//GEN-LAST:event_btnDesconectarActionPerformed
 
     private void btnConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConectarActionPerformed
@@ -228,7 +230,6 @@ public class VCliente extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_txtMensajeKeyPressed
-    
 
     public void nuevaPersona(String nick) {
         dlm.addElement(nick);

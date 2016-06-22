@@ -3,6 +3,7 @@ package cliente;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
+import javax.swing.JOptionPane;
 
 public class MCliente extends Thread {
     
@@ -63,6 +64,8 @@ public class MCliente extends Thread {
                 }
             }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(ventana, "No se encuentra el puerto abierto para iniciar el chat");
+            ventana.desconectar();
         }
     }
 }
