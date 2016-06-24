@@ -236,6 +236,7 @@ public class VCliente extends javax.swing.JFrame {
     }
 
     public void mensajeRecibido(String mensaje) {
+        if(mensaje.equalsIgnoreCase("Se ha desconectado el servidor del chat")) cliente.desconectar();
         areaMensaje.append(mensaje + "\n");
     }
 

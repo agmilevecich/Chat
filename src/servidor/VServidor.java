@@ -102,8 +102,9 @@ public class VServidor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAbrirActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-
-        if(servidor != null) {    
+        if(servidor != null) {
+            MSGestionConexiones.getInstancia().enviarTrama(2, "Se ha desconectado el servidor del chat");
+            MSGestionConexiones.getInstancia().enviarTrama(3, "");
         servidor.interrupt();
         }
     }//GEN-LAST:event_formWindowClosing
