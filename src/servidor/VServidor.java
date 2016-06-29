@@ -30,6 +30,7 @@ public class VServidor extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtPuerto = new javax.swing.JTextField();
         btnAbrir = new javax.swing.JButton();
+        btnAbrir1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -52,6 +53,13 @@ public class VServidor extends javax.swing.JFrame {
             }
         });
 
+        btnAbrir1.setText("Cerrar Puerto");
+        btnAbrir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrir1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -68,7 +76,10 @@ public class VServidor extends javax.swing.JFrame {
                         .addComponent(txtPuerto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnAbrir1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -82,7 +93,9 @@ public class VServidor extends javax.swing.JFrame {
                     .addComponent(txtPuerto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAbrir)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAbrir1)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -108,6 +121,10 @@ public class VServidor extends javax.swing.JFrame {
         servidor.interrupt();
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void btnAbrir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrir1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAbrir1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,6 +163,7 @@ public class VServidor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrir;
+    private javax.swing.JButton btnAbrir1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txtPuerto;
