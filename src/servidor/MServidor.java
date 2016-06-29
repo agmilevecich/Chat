@@ -19,6 +19,7 @@ public class MServidor extends Thread {
         this.puerto = puerto;
     }
     
+    @Override
     public void run() {
         try {
             ss = new ServerSocket(puerto);

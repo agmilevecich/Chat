@@ -6,3 +6,4 @@ nbdist/
 .nb-gradle/
 build.xml
 nbbuild.xml
+manifest.mf
